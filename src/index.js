@@ -5,8 +5,7 @@ import { STATES, VIEWPORT } from 'constants';
 
 import Boot from 'states/boot';
 import Main from 'states/main';
-
-// This is the entry point of your game.
+import Title from 'states/title';
 
 const config = {
   width: VIEWPORT.WIDTH,
@@ -21,6 +20,7 @@ const config = {
 const game = new Phaser.Game(config);
 
 game.state.add(STATES.BOOT, Boot);
+game.state.add(STATES.TITLE, Title);
 game.state.add(STATES.MAIN, Main);
 
 game.state.start(STATES.BOOT);

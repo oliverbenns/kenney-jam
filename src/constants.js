@@ -3,15 +3,18 @@ export const PALETTE = {
 };
 
 export const IMAGES = {
+  BUTTON: 'BUTTON',
   BACKGROUND: 'BACKGROUND',
   BULLET: 'BULLET',
   ENEMY: 'ENEMY',
+  LOGO: 'LOGO',
   PLAYER: 'PLAYER',
 };
 
 export const STATES = {
   BOOT: 'BOOT',
   MAIN: 'MAIN',
+  TITLE: 'TITLE',
 };
 
 export const VIEWPORT = {

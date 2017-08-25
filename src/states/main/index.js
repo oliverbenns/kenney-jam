@@ -13,6 +13,6 @@ export default class Main extends Phaser.State {
 
     this.bulletPool = new BulletPool(game);
 
-    gameObjects.forEach(game.add.existing.bind(this))
+    gameObjects.forEach(game.add.existing, this)
   }
 }
