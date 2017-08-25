@@ -4,6 +4,7 @@ export const PALETTE = {
 
 export const IMAGES = {
   BACKGROUND: 'BACKGROUND',
+  BULLET: 'BULLET',
   ENEMY: 'ENEMY',
   PLAYER: 'PLAYER',
 };

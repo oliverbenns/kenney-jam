@@ -1,10 +1,7 @@
 import { IMAGES } from 'constants';
 
-const walkingVelocity = 400;
-
 export default class Player extends Phaser.Sprite {
   constructor(game) {
-    const image = game.cache.getImage(IMAGES.PLAYER);
     const x = game.world.centerX;
     const y = game.world.centerY;
 
@@ -16,6 +13,9 @@ export default class Player extends Phaser.Sprite {
     this.body.mass = 5;
     this.body.setRectangle(44, 100);
 
+    this.fireRateTimer = game.time.create(false);
+    this.fireRateTimer.start();
+
     this.keys = {
       ...game.input.keyboard.createCursorKeys(),
       space: game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR),
@@ -23,7 +23,7 @@ export default class Player extends Phaser.Sprite {
   }
 
   move() {
-    const { down, left, right, up } = this.keys;
+    const { down, left, right, up, space } = this.keys;
 
     if (up.isDown) {
       this.body.thrust(200);
@@ -39,6 +39,16 @@ export default class Player extends Phaser.Sprite {
       this.body.rotateRight(22.5);
     } else {
       this.body.setZeroRotation();
+    }
+
+    if (space.isDown && this.fireRateTimer.ms > 300) {
+      const { state } = this.game;
+      const { bulletPool } = state.states[state.current];
+
+      this.fireRateTimer.stop();
+      this.fireRateTimer.start();
+
+      bulletPool.add('player', this.x, this.y);
     }
   }
 
