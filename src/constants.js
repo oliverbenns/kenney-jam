@@ -3,6 +3,7 @@ export const PALETTE = {
 };
 
 export const IMAGES = {
+  BACKGROUND: 'BACKGROUND',
   ENEMY: 'ENEMY',
   PLAYER: 'PLAYER',
 };

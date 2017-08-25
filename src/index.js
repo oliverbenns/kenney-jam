@@ -15,7 +15,7 @@ const config = {
   parent: '',
   transparent: false,
   antialias: true,
-  physicsConfig: { arcade: true },
+  physicsConfig: { p2: true },
 };
 
 const game = new Phaser.Game(config);

@@ -10,10 +10,11 @@ export default class Player extends Phaser.Sprite {
 
     super(game, x, y, IMAGES.PLAYER);
 
-    game.physics.arcade.enable(this);
+    game.physics.p2.enable(this, true);
 
     this.anchor.setTo(0.5, 0.5);
-    this.speed = 200;
+    this.body.mass = 5;
+    this.body.setRectangle(44, 100);
 
     this.keys = {
       ...game.input.keyboard.createCursorKeys(),
@@ -25,19 +26,19 @@ export default class Player extends Phaser.Sprite {
     const { down, left, right, up } = this.keys;
 
     if (up.isDown) {
-      this.body.velocity.y = -(this.speed);
-    } else if (down.isDown) {
-      this.body.velocity.y = this.speed;
-    } else {
-      this.body.velocity.y = 0;
+      this.body.thrust(200);
+    }
+
+    if (down.isDown) {
+      this.body.reverse(200)
     }
 
     if (left.isDown) {
-      this.body.velocity.x = -(this.speed);
+      this.body.rotateLeft(22.5);
     } else if (right.isDown) {
-      this.body.velocity.x = this.speed;
+      this.body.rotateRight(22.5);
     } else {
-      this.body.velocity.x = 0;
+      this.body.setZeroRotation();
     }
   }
 
