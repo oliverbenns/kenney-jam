@@ -19,4 +19,3 @@ export default class Bullet extends Phaser.Sprite {
     this.body.y += 5;
   }
 }
-//

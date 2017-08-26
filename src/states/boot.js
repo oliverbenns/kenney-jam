@@ -7,7 +7,7 @@ export default class Boot extends Phaser.State {
     // Load assets
     load.spritesheet(IMAGES.BUTTON, 'assets/img/button.png', 190, 49);
     load.spritesheet(IMAGES.PLAYER, 'assets/img/blue-ship.png', 66, 113);
-    load.spritesheet(IMAGES.ENEMY, 'assets/img/red-ship.png', 66, 113);
+    load.spritesheet(IMAGES.ENEMY, 'assets/img/dinghy.png', 20, 38);
     load.spritesheet(IMAGES.BULLET, 'assets/img/bullet.png', 10, 10);
 
     load.image(IMAGES.BACKGROUND, 'assets/img/water.png');
