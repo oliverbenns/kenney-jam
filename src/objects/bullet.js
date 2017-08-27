@@ -2,7 +2,7 @@ import { IMAGES } from 'constants';
 import Enemy from 'objects/enemy';
 
 export default class Bullet extends Phaser.Sprite {
-  constructor(game, owner, x, y) {
+  constructor(game, owner, x, y, direction) {
     super(game, x, y, IMAGES.BULLET);
 
     game.physics.p2.enable(this, true);
@@ -21,9 +21,13 @@ export default class Bullet extends Phaser.Sprite {
       this.game.score++;
       this.kill();
     }, this);
-  }
+    console.log('this', this);
+    console.log('this.body.velocity1', this.body.velocity);
 
-  update() {
-    this.body.y += 5;
+    const speed = 400;
+
+    this.body.velocity.x = direction.x * speed;
+    this.body.velocity.y = direction.y * speed;
+    console.log('this.body.velocity2', this.body.velocity);
   }
 }

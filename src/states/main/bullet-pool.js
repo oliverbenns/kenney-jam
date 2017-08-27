@@ -8,7 +8,7 @@ export default class BulletPool {
     this.pool = [];
   }
 
-  add(owner, x, y) {
+  add(owner, x, y, direction) {
     const existing = this.pool.find(sprite => sprite.alive === false); // Alive is undefined by default so cannot do !alive.
 
     if (existing) {
@@ -17,7 +17,7 @@ export default class BulletPool {
       return;
     }
 
-    const bullet = new Bullet(this.game, owner, x, y);
+    const bullet = new Bullet(this.game, owner, x, y, direction);
 
     this.pool.push(bullet);
     this.game.add.existing(bullet);

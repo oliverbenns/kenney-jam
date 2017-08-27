@@ -22,7 +22,10 @@ export default class Player extends Phaser.Sprite {
 
     this.keys = {
       ...game.input.keyboard.createCursorKeys(),
-      space: game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR),
+      w: game.input.keyboard.addKey(Phaser.Keyboard.W),
+      s: game.input.keyboard.addKey(Phaser.Keyboard.S),
+      a: game.input.keyboard.addKey(Phaser.Keyboard.A),
+      d: game.input.keyboard.addKey(Phaser.Keyboard.D),
     };
 
     this.body.collideWorldBounds = true;
@@ -39,38 +42,63 @@ export default class Player extends Phaser.Sprite {
     }, this);
   }
 
-  move() {
-    const { down, left, right, up, space } = this.keys;
+  fire() {
+    const { input, state } = this.game;
+    const { bulletPool } = state.states[state.current];
 
-    if (up.isDown) {
+    this.fireRateTimer.stop();
+    this.fireRateTimer.start();
+
+    const distance = {
+      x: input.mousePointer.x - this.x,
+      y: input.mousePointer.y - this.y,
+    };
+
+    const length = Math.sqrt(Math.pow(distance.x, 2) + Math.pow(distance.y, 2));
+
+    const direction = {
+      x: distance.x / length,
+      y: distance.y / length,
+    };
+
+    // console.log('this.x', this.x);
+    // console.log('this.y', this.y);
+    // console.log('input.mousePointer.x', input.mousePointer.x);
+    // console.log('input.mousePointer.y', input.mousePointer.y);
+
+    // console.log('length', length);
+    // console.log('direction', direction);
+    console.log('FIRING WITH', direction);
+
+    bulletPool.add('player', this.x, this.y, direction);
+    this.game.sound.play(SFX.FIRE);
+  }
+
+  update() {
+    const { down, left, right, up, w, a, s, d } = this.keys;
+    const { leftButton } = this.game.input.activePointer;
+
+
+    // Movement
+    if (up.isDown || w.isDown) {
       this.body.thrust(200);
     }
 
-    if (down.isDown) {
+    if (down.isDown || s.isDown) {
       this.body.reverse(200)
     }
 
-    if (left.isDown) {
+    if (left.isDown || a.isDown) {
       this.body.rotateLeft(22.5);
-    } else if (right.isDown) {
+    } else if (right.isDown || d.isDown) {
       this.body.rotateRight(22.5);
     } else {
       this.body.setZeroRotation();
     }
 
-    if (space.isDown && this.fireRateTimer.ms > 300) {
-      const { state } = this.game;
-      const { bulletPool } = state.states[state.current];
-
-      this.fireRateTimer.stop();
-      this.fireRateTimer.start();
-
-      bulletPool.add('player', this.x, this.y);
-      this.game.sound.play(SFX.FIRE);
+    // Firing
+    if (leftButton.isDown && this.fireRateTimer.ms > 300) {
+      this.fire();
     }
-  }
-
-  update() {
-    this.move();
   }
 }
