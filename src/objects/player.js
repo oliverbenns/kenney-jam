@@ -79,9 +79,12 @@ export default class Player extends Phaser.Sprite {
       this.body.reverse(200)
     }
 
-    if (left.isDown || a.isDown) {
-      this.body.rotateLeft(22.5);
-    } else if (right.isDown || d.isDown) {
+    // Deliberate bug for the jam!
+    // if (left.isDown || a.isDown) {
+    //   this.body.rotateLeft(22.5);
+    // }
+
+    if (right.isDown || d.isDown) {
       this.body.rotateRight(22.5);
     } else {
       this.body.setZeroRotation();
