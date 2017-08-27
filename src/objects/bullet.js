@@ -1,4 +1,5 @@
 import { IMAGES } from 'constants';
+import Enemy from 'objects/enemy';
 
 export default class Bullet extends Phaser.Sprite {
   constructor(game, owner, x, y) {
@@ -13,6 +14,13 @@ export default class Bullet extends Phaser.Sprite {
     this.checkWorldBounds = true;
 
     this.events.onOutOfBounds.add(this.kill, this);
+
+    this.body.setCollisionGroup(Bullet.collisionGroup);
+
+    this.body.collides(Enemy.collisionGroup, () => {
+      this.game.score++;
+      this.kill();
+    }, this);
   }
 
   update() {

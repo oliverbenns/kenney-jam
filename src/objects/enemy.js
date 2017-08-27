@@ -1,4 +1,6 @@
 import { IMAGES, VIEWPORT } from 'constants';
+
+import Bullet from 'objects/bullet';
 import Player from 'objects/player';
 
 const getRandomCoords = game => {
@@ -30,6 +32,7 @@ export default class Enemy extends Phaser.Sprite {
     this.body.setCollisionGroup(Enemy.collisionGroup);
 
     this.body.collides(Enemy.collisionGroup);
+    this.body.collides(Bullet.collisionGroup, this.kill, this);
     this.body.collides(Player.collisionGroup, this.kill, this);
   }
 

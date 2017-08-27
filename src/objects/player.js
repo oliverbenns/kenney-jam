@@ -29,8 +29,6 @@ export default class Player extends Phaser.Sprite {
 
     this.body.setCollisionGroup(Player.collisionGroup);
 
-    this.game.score = 5;
-
     this.body.collides(Enemy.collisionGroup, (enemy, player) => {
       this.health--;
 
