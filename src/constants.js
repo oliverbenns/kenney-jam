@@ -11,6 +11,13 @@ export const IMAGES = {
   PLAYER: 'PLAYER',
 };
 
+export const SFX = {
+  BUTTON: 'BUTTON',
+  CRASH: 'CRASH',
+  FIRE: 'FIRE',
+  SOUNDTRACK: 'SOUNDTRACK',
+};
+
 export const STATES = {
   BOOT: 'BOOT',
   MAIN: 'MAIN',

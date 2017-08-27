@@ -1,4 +1,4 @@
-import { IMAGES, STATES } from 'constants';
+import { IMAGES, SFX, STATES } from 'constants';
 
 import Enemy from 'objects/enemy';
 
@@ -66,6 +66,7 @@ export default class Player extends Phaser.Sprite {
       this.fireRateTimer.start();
 
       bulletPool.add('player', this.x, this.y);
+      this.game.sound.play(SFX.FIRE);
     }
   }
 

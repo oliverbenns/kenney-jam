@@ -1,4 +1,4 @@
-import { IMAGES, VIEWPORT } from 'constants';
+import { IMAGES, SFX, VIEWPORT } from 'constants';
 
 import Bullet from 'objects/bullet';
 import Player from 'objects/player';
@@ -38,6 +38,7 @@ export default class Enemy extends Phaser.Sprite {
 
   kill() {
     this.animations.play('destroy');
+    this.game.sound.play(SFX.CRASH);
 
     this.animations.currentAnim.onComplete.add(() => Phaser.Sprite.prototype.kill.call(this));
   }

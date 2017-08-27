@@ -34,7 +34,7 @@ export default class Main extends Phaser.State {
     game.time.events.loop(Phaser.Timer.SECOND, this.spawnEnemy, this);
   }
   spawnEnemy() {
-    // add this to an object pool.
+    // @TODO: add this to an object pool.
     const enemy = new Enemy(this.game);
 
     this.game.add.existing(enemy);
