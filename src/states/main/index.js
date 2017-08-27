@@ -24,7 +24,7 @@ export default class Main extends Phaser.State {
     this.scoreText.anchor.setTo(1, 0);
 
     const gameObjects = [
-      // new Background(game),
+      new Background(game),
       this.player,
       this.scoreText,
     ];
