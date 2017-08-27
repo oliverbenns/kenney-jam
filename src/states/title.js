@@ -25,10 +25,18 @@ export default class Title extends Phaser.State {
       game.add.button(world.centerX, world.height * 0.8, IMAGES.BUTTON, this.handleClick, this, 0, 0, 1, 0),
     ];
 
+    if (game.playCount > 0) {
+      objects.push(
+        game.add.text(world.centerX, world.height * 0.45, `Your score was ${game.score}`, textStyle),
+      );
+    }
+
     objects.forEach(o => o.anchor.setTo(0.5))
   }
 
   handleClick() {
     this.game.state.start(STATES.MAIN);
+    this.game.score = 0;
+    this.game.playCount++;
   }
 }

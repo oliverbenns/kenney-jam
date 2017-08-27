@@ -1,5 +1,8 @@
 import { IMAGES, STATES } from 'constants';
 
+import Enemy from 'objects/enemy';
+import Player from 'objects/player';
+
 export default class Boot extends Phaser.State {
   preload() {
     const { load } = this.game;
@@ -15,7 +18,16 @@ export default class Boot extends Phaser.State {
   }
 
   create() {
+    this.game.physics.p2.setImpactEvents(true);
     this.game.stage.disableVisibilityChange = true;
     this.game.state.start(STATES.TITLE);
+
+    // Add collision groups
+    Player.collisionGroup = this.game.physics.p2.createCollisionGroup()
+    Enemy.collisionGroup = this.game.physics.p2.createCollisionGroup()
+
+    // Set initial score / stuff
+    this.game.score = 0;
+    this.game.playCount = 0;
   }
 }

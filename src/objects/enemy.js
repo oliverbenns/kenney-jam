@@ -1,4 +1,5 @@
 import { IMAGES, VIEWPORT } from 'constants';
+import Player from 'objects/player';
 
 const getRandomCoords = game => {
   const spawnAbove = game.rnd.integerInRange(0, 1) === 1;
@@ -23,15 +24,24 @@ export default class Enemy extends Phaser.Sprite {
     this.anchor.setTo(0.5);
     this.speed = 50
     this.body.mass = 5;
+
+    this.animations.add('destroy', [0, 1, 2], 30);
+
+    this.body.setCollisionGroup(Enemy.collisionGroup);
+
+    this.body.collides(Enemy.collisionGroup);
+    this.body.collides(Player.collisionGroup, this.kill, this);
   }
 
-  getPlayer() {
-    return this.game.state.states[this.game.state.current].player;
+  kill() {
+    this.animations.play('destroy');
+
+    this.animations.currentAnim.onComplete.add(() => Phaser.Sprite.prototype.kill.call(this));
   }
 
   move() {
     const { game } = this;
-    const player = this.getPlayer();
+    const { player } = this.game.state.states[this.game.state.current];
 
     const angle = Math.atan2(player.position.y - this.y, player.position.x - this.x);
 
@@ -44,4 +54,3 @@ export default class Enemy extends Phaser.Sprite {
     this.move();
   }
 }
-

@@ -1,4 +1,6 @@
-import { IMAGES } from 'constants';
+import { IMAGES, STATES } from 'constants';
+
+import Enemy from 'objects/enemy';
 
 export default class Player extends Phaser.Sprite {
   constructor(game) {
@@ -13,6 +15,8 @@ export default class Player extends Phaser.Sprite {
     this.body.mass = 5;
     this.body.setRectangle(44, 100);
 
+    this.health = 3;
+
     this.fireRateTimer = game.time.create(false);
     this.fireRateTimer.start();
 
@@ -20,6 +24,21 @@ export default class Player extends Phaser.Sprite {
       ...game.input.keyboard.createCursorKeys(),
       space: game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR),
     };
+
+    this.body.collideWorldBounds = true;
+
+    this.body.setCollisionGroup(Player.collisionGroup);
+
+    this.game.score = 5;
+
+    this.body.collides(Enemy.collisionGroup, (enemy, player) => {
+      this.health--;
+
+      this.frame = 1;
+      if (this.health === 0) {
+        this.game.state.start(STATES.TITLE);
+      }
+    }, this);
   }
 
   move() {
