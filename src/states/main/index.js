@@ -18,6 +18,13 @@ export default class Main extends Phaser.State {
   create() {
     const { game } = this;
 
+    // Not sure why these need to be added here instead of in Boot or something.
+    // Same as https://github.com/oliverbenns/cga-jam/blob/master/src/states/level.js#L32
+    Bullet.collisionGroup = this.game.physics.p2.createCollisionGroup();
+    Player.collisionGroup = this.game.physics.p2.createCollisionGroup();
+    Enemy.collisionGroup = this.game.physics.p2.createCollisionGroup();
+    this.game.physics.p2.setBoundsToWorld(true, true, true, true, true);
+
     this.bulletPool = new BulletPool(game);
     this.player = new Player(game);
     this.scoreText = new Phaser.Text(game, VIEWPORT.WIDTH - 10, 10, `Score: ${game.score}  |  Health: ${this.player.health}`, textStyle);

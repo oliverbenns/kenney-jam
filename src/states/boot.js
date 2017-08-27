@@ -29,11 +29,6 @@ export default class Boot extends Phaser.State {
     this.game.stage.disableVisibilityChange = true;
     this.game.state.start(STATES.TITLE);
 
-    // Add collision groups
-    Bullet.collisionGroup = this.game.physics.p2.createCollisionGroup();
-    Player.collisionGroup = this.game.physics.p2.createCollisionGroup();
-    Enemy.collisionGroup = this.game.physics.p2.createCollisionGroup();
-
     // Set initial score / stuff
     this.game.score = 0;
     this.game.playCount = 0;
