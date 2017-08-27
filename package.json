@@ -1,6 +1,6 @@
 {
   "name": "kenney-jam",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Game for the Kenney Game Jam 2017",
   "main": "index.js",
   "repository": {
