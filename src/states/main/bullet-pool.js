@@ -14,6 +14,7 @@ export default class BulletPool {
     if (existing) {
       existing.owner = owner;
       existing.reset(x, y);
+      existing.setVelocity(direction);
       return;
     }
 

@@ -21,13 +21,13 @@ export default class Bullet extends Phaser.Sprite {
       this.game.score++;
       this.kill();
     }, this);
-    console.log('this', this);
-    console.log('this.body.velocity1', this.body.velocity);
 
-    const speed = 400;
+    this.speed = 400;
+    this.setVelocity(direction);
+  }
 
-    this.body.velocity.x = direction.x * speed;
-    this.body.velocity.y = direction.y * speed;
-    console.log('this.body.velocity2', this.body.velocity);
+  setVelocity(direction) {
+    this.body.velocity.x = direction.x * this.speed;
+    this.body.velocity.y = direction.y * this.speed;
   }
 }

@@ -61,15 +61,6 @@ export default class Player extends Phaser.Sprite {
       y: distance.y / length,
     };
 
-    // console.log('this.x', this.x);
-    // console.log('this.y', this.y);
-    // console.log('input.mousePointer.x', input.mousePointer.x);
-    // console.log('input.mousePointer.y', input.mousePointer.y);
-
-    // console.log('length', length);
-    // console.log('direction', direction);
-    console.log('FIRING WITH', direction);
-
     bulletPool.add('player', this.x, this.y, direction);
     this.game.sound.play(SFX.FIRE);
   }
