@@ -27,18 +27,17 @@ export default class Main extends Phaser.State {
       // new Background(game),
       this.player,
       this.scoreText,
-      new Enemy(game),
-      new Enemy(game),
-      new Enemy(game),
-
-      new Enemy(game),
-      new Enemy(game),
-      new Enemy(game),
-      new Enemy(game),
-      new Enemy(game),
     ];
 
-    gameObjects.forEach(game.add.existing, this)
+    gameObjects.forEach(game.add.existing, this);
+
+    game.time.events.loop(Phaser.Timer.SECOND, this.spawnEnemy, this);
+  }
+  spawnEnemy() {
+    // add this to an object pool.
+    const enemy = new Enemy(this.game);
+
+    this.game.add.existing(enemy);
   }
 
   update() {
