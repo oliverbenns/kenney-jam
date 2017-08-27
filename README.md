@@ -1,4 +1,4 @@
-# Kenney Jam
+# Crappy Pirates
 
 Game for the [Kenney Game Jam 2017](https://itch.io/jam/kenney-jam-2017).
 
