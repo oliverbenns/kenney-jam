@@ -7,8 +7,9 @@ const text = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do e
 const textStyle = {
   wordWrap: true,
   align: 'center',
-  wordWrapWidth: VIEWPORT.WIDTH * 0.66,
-  font: '16px Arial',
+  wordWrapWidth: VIEWPORT.WIDTH * 0.5,
+  font: '13px Arial',
+  fontWeight: 'bold',
   fill: 'black',
 };
 
