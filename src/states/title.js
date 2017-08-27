@@ -1,4 +1,4 @@
-import { IMAGES, STATES, VIEWPORT } from 'constants';
+import { IMAGES, SFX, STATES, VIEWPORT } from 'constants';
 
 import Background from 'objects/background';
 
@@ -36,6 +36,7 @@ export default class Title extends Phaser.State {
   }
 
   handleClick() {
+    this.game.sound.play(SFX.BUTTON);
     this.game.state.start(STATES.MAIN);
     this.game.score = 0;
     this.game.playCount++;
