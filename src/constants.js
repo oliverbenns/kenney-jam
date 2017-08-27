@@ -1,7 +1,3 @@
-export const PALETTE = {
-  BACKGROUND: '#3598DB', // The Kenney blue.
-};
-
 export const IMAGES = {
   BUTTON: 'BUTTON',
   BACKGROUND: 'BACKGROUND',
