@@ -9,7 +9,7 @@ export default class Player extends Phaser.Sprite {
 
     super(game, x, y, IMAGES.PLAYER);
 
-    game.physics.p2.enable(this, true);
+    game.physics.p2.enable(this);
 
     this.anchor.setTo(0.5, 0.5);
     this.body.mass = 5;

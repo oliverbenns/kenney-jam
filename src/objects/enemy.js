@@ -19,7 +19,7 @@ export default class Enemy extends Phaser.Sprite {
 
     super(game, coords.x, coords.y, IMAGES.ENEMY);
 
-    game.physics.p2.enable(this, true);
+    game.physics.p2.enable(this);
 
     this.body.collideWorldBounds = false;
 

@@ -5,7 +5,7 @@ export default class Bullet extends Phaser.Sprite {
   constructor(game, owner, x, y, direction) {
     super(game, x, y, IMAGES.BULLET);
 
-    game.physics.p2.enable(this, true);
+    game.physics.p2.enable(this);
 
     this.owner = owner;
     this.anchor.setTo(0.5, 0.5);
