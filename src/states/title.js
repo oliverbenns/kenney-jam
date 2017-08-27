@@ -2,13 +2,13 @@ import { IMAGES, SFX, STATES, VIEWPORT } from 'constants';
 
 import Background from 'objects/background';
 
-const text = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.';
+const text = 'You\'re a crappy pirate, your boat can only turn right. Seriously what\'s up with that? Also, the enemy pirates only have dinghys that want to crash into you, not sure why to be honest. Move with [WSD] (no A!), aim and shoot with your mouse. Try to enjoy yourself.';
 
 const textStyle = {
   wordWrap: true,
   align: 'center',
-  wordWrapWidth: VIEWPORT.WIDTH * 0.5,
-  font: '13px Arial',
+  wordWrapWidth: VIEWPORT.WIDTH * 0.6,
+  font: '14px Arial',
   fontWeight: 'bold',
   fill: 'black',
 };
@@ -22,8 +22,8 @@ export default class Title extends Phaser.State {
 
     const objects = [
       game.add.sprite(world.centerX, world.height * 0.3, IMAGES.LOGO),
-      game.add.text(world.centerX, world.height * 0.6, text, textStyle),
-      game.add.button(world.centerX, world.height * 0.8, IMAGES.BUTTON, this.handleClick, this, 0, 0, 1, 0),
+      game.add.text(world.centerX, world.height * (game.playCount > 0 ? 0.6 : 0.55), text, textStyle),
+      game.add.button(world.centerX, world.height * (game.playCount > 0 ? 0.8 : 0.75), IMAGES.BUTTON, this.handleClick, this, 0, 0, 1, 0),
     ];
 
     if (game.playCount > 0) {
